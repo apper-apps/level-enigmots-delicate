@@ -2,11 +2,11 @@ import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { clearUser, setUser } from "@/store/userSlice";
 import Loading from "@/components/ui/Loading";
 import LoginPage from "@/components/pages/LoginPage";
 import GamePage from "@/components/pages/GamePage";
 import AuthContext, { useAuth } from "@/contexts/AuthContext";
-import { setUser, clearUser } from "@/store/userSlice";
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {

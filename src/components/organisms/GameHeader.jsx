@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { motion } from "framer-motion"
 import { useSelector } from 'react-redux'
 import { toast } from "react-toastify"
-import { AuthContext } from '@/contexts/AuthContext'
+import AuthContext from '@/contexts/AuthContext'
 import ApperIcon from "@/components/ApperIcon"
 import Button from "@/components/atoms/Button"
 
