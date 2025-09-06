@@ -6,7 +6,7 @@ import Loading from "@/components/ui/Loading";
 import LoginPage from "@/components/pages/LoginPage";
 import GamePage from "@/components/pages/GamePage";
 import AuthContext, { useAuth } from "@/contexts/AuthContext";
-import { setUser, clearUser } from "@/store/slices/userSlice";
+import { setUser, clearUser } from "@/store/userSlice";
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
