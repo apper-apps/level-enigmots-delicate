@@ -1,0 +1,115 @@
+@import 'react-toastify/dist/ReactToastify.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: #FAF8F3;
+  font-family: 'Crimson Pro', serif;
+  overflow-x: hidden;
+}
+
+/* Toast customization */
+.Toastify__toast-container {
+  width: auto;
+  max-width: 320px;
+  z-index: 9999;
+}
+
+.Toastify__toast {
+  border-radius: 12px;
+  font-family: 'Crimson Pro', serif;
+  font-size: 14px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  min-height: 60px;
+}
+
+.Toastify__toast--success {
+  background: linear-gradient(135deg, #27AE60, #2ECC71);
+  color: white;
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(135deg, #C0392B, #E74C3C);
+  color: white;
+}
+
+.Toastify__toast--info {
+  background: linear-gradient(135deg, #3498DB, #5DADE2);
+  color: white;
+}
+
+/* Custom handwritten input style */
+.handwritten-input {
+  background: linear-gradient(to right, transparent 0px, transparent calc(100% - 2px), #3498DB calc(100% - 2px), #3498DB 100%);
+  background-size: 100% 2px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  border: none;
+  outline: none;
+  padding: 8px 0;
+  font-family: 'Kalam', cursive;
+  font-size: 18px;
+  color: #2C3E50;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.handwritten-input:focus {
+  background-image: linear-gradient(to right, transparent 0px, transparent calc(100% - 3px), #E74C3C calc(100% - 3px), #E74C3C 100%);
+  background-size: 100% 3px;
+}
+
+/* Paper line styling */
+.ruled-lines {
+  background-image: 
+    linear-gradient(to right, rgba(59, 130, 246, 0.1) 0px, rgba(59, 130, 246, 0.1) 1px, transparent 1px, transparent 100%),
+    repeating-linear-gradient(
+      transparent,
+      transparent 23px,
+      rgba(59, 130, 246, 0.15) 23px,
+      rgba(59, 130, 246, 0.15) 24px
+    );
+  background-size: 24px 24px, 100% 24px;
+  background-position: 0 0, 0 0;
+}
+
+/* Notebook binding holes */
+.binding-holes::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  height: calc(100% - 40px);
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 30px,
+    #8B7355 30px,
+    #8B7355 34px,
+    transparent 34px,
+    transparent 60px
+  );
+  border-radius: 1px;
+}
+
+/* Page curl effect */
+.page-curl::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(-45deg, transparent 45%, rgba(0,0,0,0.1) 50%, transparent 55%);
+  border-bottom-left-radius: 20px;
+}

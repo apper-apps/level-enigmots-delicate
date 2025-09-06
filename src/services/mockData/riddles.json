@@ -1,0 +1,332 @@
+[
+  {
+    "Id": 1,
+    "text": "Je suis blanc quand je suis sale et noir quand je suis propre. Que suis-je ?",
+    "answer": "tableau",
+    "hints": [
+      "On m'utilise dans les écoles",
+      "Les professeurs écrivent sur moi avec de la craie",
+      "Quand on m'efface, je deviens noir"
+    ],
+    "category": "objets"
+  },
+  {
+    "Id": 2,
+    "text": "Plus on m'enlève, plus je deviens grand. Que suis-je ?",
+    "answer": "trou",
+    "hints": [
+      "On peut me creuser dans la terre",
+      "Plus on me creuse, plus je m'agrandis",
+      "Je peux être profond ou superficiel"
+    ],
+    "category": "logique"
+  },
+  {
+    "Id": 3,
+    "text": "Je commence la nuit et je finis le matin, mais je ne suis pas le temps. Que suis-je ?",
+    "answer": "n",
+    "hints": [
+      "Je suis très petite",
+      "On me trouve dans l'alphabet",
+      "Je suis la première lettre du mot 'nuit' et la dernière du mot 'matin'"
+    ],
+    "category": "lettres"
+  },
+  {
+    "Id": 4,
+    "text": "J'ai des aiguilles mais je ne couds pas, j'ai des chiffres mais je ne calcule pas. Que suis-je ?",
+    "answer": "horloge",
+    "hints": [
+      "On me regarde pour savoir quelque chose d'important",
+      "J'ai deux ou trois aiguilles qui bougent",
+      "Je vous aide à ne pas être en retard"
+    ],
+    "category": "objets"
+  },
+  {
+    "Id": 5,
+    "text": "Je peux voler sans ailes, pleurer sans yeux. Que suis-je ?",
+    "answer": "nuage",
+    "hints": [
+      "On me voit dans le ciel",
+      "Je change de forme constamment",
+      "Parfois, je deviens gris et je fais de la pluie"
+    ],
+    "category": "nature"
+  },
+  {
+    "Id": 6,
+    "text": "Plus je suis chaud, plus je suis frais. Que suis-je ?",
+    "answer": "pain",
+    "hints": [
+      "On me mange souvent le matin",
+      "Je sors du four tout chaud",
+      "Quand je suis chaud, on dit que je suis frais du jour"
+    ],
+    "category": "nourriture"
+  },
+  {
+    "Id": 7,
+    "text": "Je grandis vers le bas et je rapetisse vers le haut. Que suis-je ?",
+    "answer": "racine",
+    "hints": [
+      "Je fais partie d'une plante",
+      "Je cherche l'eau et les nutriments",
+      "On ne me voit généralement pas car je suis sous terre"
+    ],
+    "category": "nature"
+  },
+  {
+    "Id": 8,
+    "text": "J'ai quatre pattes le matin, deux à midi, et trois le soir. Qui suis-je ?",
+    "answer": "homme",
+    "hints": [
+      "C'est une métaphore sur les âges de la vie",
+      "Bébé, je me déplace à quatre pattes",
+      "Vieux, j'utilise une canne pour marcher"
+    ],
+    "category": "classique"
+  },
+  {
+    "Id": 9,
+    "text": "Je suis toujours devant toi mais tu ne peux jamais me rattraper. Que suis-je ?",
+    "answer": "avenir",
+    "hints": [
+      "Je représente ce qui va arriver",
+      "Tu peux me planifier mais jamais me saisir",
+      "Je suis l'opposé du passé"
+    ],
+    "category": "abstrait"
+  },
+  {
+    "Id": 10,
+    "text": "Plus je travaille, plus je rapetisse. Que suis-je ?",
+    "answer": "gomme",
+    "hints": [
+      "Je corrige les erreurs",
+      "Les écoliers m'utilisent souvent",
+      "Je fais disparaître ce qui est écrit au crayon"
+    ],
+    "category": "objets"
+  },
+  {
+    "Id": 11,
+    "text": "J'ai des dents mais je ne mords pas. Que suis-je ?",
+    "answer": "peigne",
+    "hints": [
+      "On m'utilise pour se coiffer",
+      "Mes dents sont alignées et fines",
+      "Je démêle les cheveux"
+    ],
+    "category": "objets"
+  },
+  {
+    "Id": 12,
+    "text": "Je cours mais je n'ai pas de jambes, je chante mais je n'ai pas de bouche. Que suis-je ?",
+    "answer": "rivière",
+    "hints": [
+      "Je coule de la montagne vers la mer",
+      "Les poissons nagent en moi",
+      "Mon murmure est apaisant"
+    ],
+    "category": "nature"
+  },
+  {
+    "Id": 13,
+    "text": "Je suis plein de trous mais je retiens l'eau. Que suis-je ?",
+    "answer": "éponge",
+    "hints": [
+      "On m'utilise pour se laver",
+      "Je deviens plus lourd quand je suis mouillé",
+      "Je peux absorber beaucoup de liquide"
+    ],
+    "category": "objets"
+  },
+  {
+    "Id": 14,
+    "text": "Je monte et je descends mais je ne bouge jamais. Que suis-je ?",
+    "answer": "escalier",
+    "hints": [
+      "On m'utilise pour changer d'étage",
+      "J'ai des marches",
+      "On peut monter ou descendre sur moi"
+    ],
+    "category": "objets"
+  },
+  {
+    "Id": 15,
+    "text": "Plus on me partage, plus j'existe. Que suis-je ?",
+    "answer": "secret",
+    "hints": [
+      "Normalement, on ne devrait pas me dire",
+      "Je circule de bouche à oreille",
+      "Paradoxalement, plus on me dit, plus je me propage"
+    ],
+    "category": "abstrait"
+  },
+  {
+    "Id": 16,
+    "text": "Je suis leger comme une plume, mais même l'homme le plus fort ne peut me tenir longtemps. Que suis-je ?",
+    "answer": "souffle",
+    "hints": [
+      "Je sors de votre bouche",
+      "Vous me retenez quand vous plongez",
+      "Je suis invisible mais essentiel à la vie"
+    ],
+    "category": "corps"
+  },
+  {
+    "Id": 17,
+    "text": "J'ai une tête mais pas de corps, une couronne mais pas de royaume. Que suis-je ?",
+    "answer": "pièce",
+    "hints": [
+      "On me trouve dans un portefeuille",
+      "J'ai deux faces différentes",
+      "On peut me lancer en l'air pour décider"
+    ],
+    "category": "objets"
+  },
+  {
+    "Id": 18,
+    "text": "Je grandis sans jamais vieillir, je me nourris sans jamais manger. Que suis-je ?",
+    "answer": "feu",
+    "hints": [
+      "J'ai besoin d'oxygène pour vivre",
+      "Je peux être dangereux si on ne me contrôle pas",
+      "Je donne de la chaleur et de la lumière"
+    ],
+    "category": "éléments"
+  },
+  {
+    "Id": 19,
+    "text": "Plus je suis vieux, plus je suis fort. Plus je suis fort, plus je suis rare. Que suis-je ?",
+    "answer": "vin",
+    "hints": [
+      "Je viens du raisin",
+      "On me conserve dans des caves",
+      "Les connaisseurs apprécient mes millésimes"
+    ],
+    "category": "boisson"
+  },
+  {
+    "Id": 20,
+    "text": "Je peux être cassé sans être touché, je peux être tenu sans être pris. Que suis-je ?",
+    "answer": "promesse",
+    "hints": [
+      "On me donne avec sa parole",
+      "Les gens honnêtes me respectent toujours",
+      "Quand on ne me respecte pas, on me 'casse'"
+    ],
+    "category": "abstrait"
+  },
+  {
+    "Id": 21,
+    "text": "J'ai des clés mais pas de serrures, j'ai de l'espace mais pas de place, tu peux entrer mais pas sortir. Que suis-je ?",
+    "answer": "clavier",
+    "hints": [
+      "On me trouve sur les ordinateurs",
+      "J'ai une barre d'espace",
+      "Mes touches font des lettres et des chiffres"
+    ],
+    "category": "informatique"
+  },
+  {
+    "Id": 22,
+    "text": "Je deviens plus humide en séchant. Que suis-je ?",
+    "answer": "serviette",
+    "hints": [
+      "On m'utilise après la douche",
+      "Plus je vous sèche, plus je deviens mouillée",
+      "Je suis souvent en coton"
+    ],
+    "category": "objets"
+  },
+  {
+    "Id": 23,
+    "text": "Je n'ai pas de voix mais je réponds toujours quand on me parle. Que suis-je ?",
+    "answer": "écho",
+    "hints": [
+      "On m'entend dans les montagnes",
+      "Je répète ce qu'on dit",
+      "Plus l'endroit est vide, mieux on m'entend"
+    ],
+    "category": "phénomène"
+  },
+  {
+    "Id": 24,
+    "text": "Plus il y en a, moins tu vois. Qu'est-ce que c'est ?",
+    "answer": "obscurité",
+    "hints": [
+      "C'est l'absence de quelque chose",
+      "La nuit, il y en a beaucoup",
+      "Une lampe fait disparaître ce que je suis"
+    ],
+    "category": "abstrait"
+  },
+  {
+    "Id": 25,
+    "text": "Je peux remplir une pièce mais je ne prends pas de place. Que suis-je ?",
+    "answer": "lumière",
+    "hints": [
+      "Le soleil et les ampoules me créent",
+      "Je chasse l'obscurité",
+      "Je voyage très vite"
+    ],
+    "category": "phénomène"
+  },
+  {
+    "Id": 26,
+    "text": "J'ai des feuilles mais je ne suis pas un arbre, j'ai une couverture mais je ne suis pas un lit. Que suis-je ?",
+    "answer": "livre",
+    "hints": [
+      "On me lit pour apprendre ou se divertir",
+      "J'ai un début et une fin",
+      "Mes feuilles s'appellent des pages"
+    ],
+    "category": "objets"
+  },
+  {
+    "Id": 27,
+    "text": "Je voyage partout dans le monde mais je reste toujours dans mon coin. Que suis-je ?",
+    "answer": "timbre",
+    "hints": [
+      "On me colle sur les enveloppes",
+      "Je permets d'envoyer du courrier",
+      "Mon coin est toujours en haut à droite"
+    ],
+    "category": "objets"
+  },
+  {
+    "Id": 28,
+    "text": "Plus je suis pressé, plus je vais lentement. Que suis-je ?",
+    "answer": "citron",
+    "hints": [
+      "Je suis un fruit jaune",
+      "On me presse pour avoir du jus",
+      "Plus on me presse, plus le jus sort lentement"
+    ],
+    "category": "nourriture"
+  },
+  {
+    "Id": 29,
+    "text": "J'ai un œil mais je ne peux pas voir, j'ai une queue mais je ne peux pas remuer. Que suis-je ?",
+    "answer": "aiguille",
+    "hints": [
+      "On m'utilise pour coudre",
+      "J'ai un trou qu'on appelle mon œil",
+      "Le fil passe dans mon œil"
+    ],
+    "category": "objets"
+  },
+  {
+    "Id": 30,
+    "text": "Je suis la fin de tout, le début de l'éternité, et je suis au milieu du temps. Que suis-je ?",
+    "answer": "t",
+    "hints": [
+      "Je suis une lettre de l'alphabet",
+      "Je termine le mot 'tout'",
+      "Je commence le mot 'temps'"
+    ],
+    "category": "lettres"
+  }
+]
