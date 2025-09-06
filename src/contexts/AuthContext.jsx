@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, useEffect } from 'react'
-import userService from '@/services/api/userService'
+import React, { createContext, useContext, useEffect, useState } from "react";
+import Error from "@/components/ui/Error";
+import userService from "@/services/api/userService";
 
 const AuthContext = createContext({
   user: null,
@@ -20,52 +21,64 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-  // Initialize auth state on mount
+  const isAuthenticated = !!user
+
   useEffect(() => {
-    const initializeAuth = () => {
+    const checkAuth = async () => {
       try {
-        const currentUser = userService.getCurrentUser()
-        setUser(currentUser)
+        const token = localStorage.getItem('authToken')
+        if (token) {
+          const userData = await userService.getCurrentUser()
+          setUser(userData)
+        }
       } catch (error) {
-        console.error('Error initializing auth:', error)
-        // Clear any corrupted data
-        userService.logout()
+        console.error('Auth check failed:', error)
+        localStorage.removeItem('authToken')
       } finally {
         setIsLoading(false)
       }
     }
 
-    initializeAuth()
+    checkAuth()
   }, [])
 
-  const login = async (email, password) => {
+  const login = async (credentials) => {
     try {
-      const authenticatedUser = await userService.authenticate(email, password)
-      setUser(authenticatedUser)
-      return authenticatedUser
+      setIsLoading(true)
+      setError(null)
+      const response = await userService.login(credentials)
+      const { user: userData, token } = response
+      
+      localStorage.setItem('authToken', token)
+      setUser(userData)
+      return userData
     } catch (error) {
+      setError(error.message || 'Login failed')
       throw error
+    } finally {
+      setIsLoading(false)
     }
   }
 
   const logout = () => {
-    try {
-      userService.logout()
-      setUser(null)
-    } catch (error) {
-      console.error('Error during logout:', error)
-      // Force logout even if there's an error
-      setUser(null)
-    }
+    localStorage.removeItem('authToken')
+    setUser(null)
+    setError(null)
   }
 
   const value = {
     user,
-    isAuthenticated: user !== null,
+    isAuthenticated,
     isLoading,
+    error,
     login,
     logout,
+  }
+
+  if (error) {
+    return <Error message={error} />
   }
 
   return (

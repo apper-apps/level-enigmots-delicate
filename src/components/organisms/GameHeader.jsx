@@ -1,51 +1,56 @@
+import { useContext } from "react"
 import { motion } from "framer-motion"
-import { useAuth } from "@/contexts/AuthContext"
+import { useSelector } from 'react-redux'
 import { toast } from "react-toastify"
+import { AuthContext } from '@/App'
 import ApperIcon from "@/components/ApperIcon"
 import Button from "@/components/atoms/Button"
+
 const GameHeader = () => {
-const { user, logout } = useAuth()
+const { logout } = useContext(AuthContext)
+  const userState = useSelector((state) => state.user)
+  const user = userState?.user
 
-const handleLogout = () => {
-logout()
-toast.success('Déconnexion réussie!')
-}
+  const handleLogout = () => {
+    logout()
+    toast.success('Déconnexion réussie!')
+  }
 
-return (
+  return (
     <motion.header
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-className="text-center mb-8"
->
-{/* User info bar */}
-<div className="flex items-center justify-between mb-6 bg-paper/50 backdrop-blur-sm rounded-xl px-4 py-3 border border-warmBrown/20">
-<div className="flex items-center space-x-3">
-{user?.avatar && (
-<img 
-src={user.avatar} 
-alt={user.name}
-className="w-10 h-10 rounded-full border-2 border-warmBrown/30"
-/>
-)}
-<div className="text-left">
-<p className="font-crimson text-midnight font-semibold text-sm">
-Bienvenue, {user?.name}!
-</p>
-<p className="font-crimson text-midnight/60 text-xs">
-{user?.role === 'admin' ? 'Administrateur' : 'Joueur'}
-</p>
-</div>
-</div>
-<Button
-variant="ghost"
-size="sm"
-onClick={handleLogout}
-className="text-midnight hover:text-coral"
->
-<ApperIcon name="LogOut" size={16} className="mr-1" />
-Déconnexion
-</Button>
+      className="text-center mb-8"
+    >
+      {/* User info bar */}
+      <div className="flex items-center justify-between mb-6 bg-paper/50 backdrop-blur-sm rounded-xl px-4 py-3 border border-warmBrown/20">
+        <div className="flex items-center space-x-3">
+          {user?.profilePicture && (
+            <img 
+              src={user.profilePicture} 
+              alt={user.firstName}
+              className="w-10 h-10 rounded-full border-2 border-warmBrown/30"
+            />
+          )}
+          <div className="text-left">
+            <p className="font-crimson text-midnight font-semibold text-sm">
+              Bienvenue, {user?.firstName} {user?.lastName}!
+            </p>
+            <p className="font-crimson text-midnight/60 text-xs">
+              {user?.emailAddress}
+            </p>
+          </div>
+        </div>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={handleLogout}
+          className="text-midnight hover:text-coral"
+        >
+          <ApperIcon name="LogOut" size={16} className="mr-1" />
+          Déconnexion
+        </Button>
 </div>
 
 <div className="flex items-center justify-center space-x-3 mb-4">

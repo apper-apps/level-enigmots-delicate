@@ -1,115 +1,200 @@
-import mockUsers from '@/services/mockData/users.json'
-
 class UserService {
   constructor() {
-    this.users = [...mockUsers]
-    this.currentUser = this.getCurrentUserFromStorage()
-  }
-
-  // Get current user from localStorage
-  getCurrentUserFromStorage() {
-    try {
-      const stored = localStorage.getItem('enigmots_current_user')
-      return stored ? JSON.parse(stored) : null
-    } catch (error) {
-      console.error('Error loading user from storage:', error)
-      localStorage.removeItem('enigmots_current_user')
-      return null
-    }
-  }
-
-  // Save current user to localStorage
-  saveCurrentUserToStorage(user) {
-    try {
-      if (user) {
-        localStorage.setItem('enigmots_current_user', JSON.stringify(user))
-      } else {
-        localStorage.removeItem('enigmots_current_user')
-      }
-    } catch (error) {
-      console.error('Error saving user to storage:', error)
-    }
-  }
-
-  // Authenticate user
-  async authenticate(email, password) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const user = this.users.find(u => 
-          u.email === email && u.password === password
-        )
-
-        if (user) {
-          const authenticatedUser = {
-            Id: user.Id,
-            name: user.name,
-            email: user.email,
-            role: user.role,
-            avatar: user.avatar,
-            lastLogin: new Date().toISOString()
-          }
-          
-          this.currentUser = authenticatedUser
-          this.saveCurrentUserToStorage(authenticatedUser)
-          resolve(authenticatedUser)
-        } else {
-          reject(new Error('Email ou mot de passe incorrect'))
-        }
-      }, 800) // Simulate network delay
+    const { ApperClient } = window.ApperSDK
+    this.apperClient = new ApperClient({
+      apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+      apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
     })
-  }
-
-  // Get current authenticated user
-  getCurrentUser() {
-    return this.currentUser
-  }
-
-  // Check if user is authenticated
-  isAuthenticated() {
-    return this.currentUser !== null
-  }
-
-  // Logout user
-  logout() {
-    this.currentUser = null
-    this.saveCurrentUserToStorage(null)
+    this.tableName = 'user_c'
   }
 
   // Get all users (admin only)
-  getAll() {
-    if (!this.currentUser || this.currentUser.role !== 'admin') {
-      throw new Error('Accès non autorisé')
+  async getAll() {
+    try {
+      const params = {
+        fields: [
+          { field: { Name: "Name" } },
+          { field: { Name: "email_c" } },
+          { field: { Name: "role_c" } },
+          { field: { Name: "avatar_c" } },
+          { field: { Name: "created_at_c" } }
+        ],
+        orderBy: [
+          {
+            fieldName: "created_at_c",
+            sorttype: "DESC"
+          }
+        ]
+      }
+
+      const response = await this.apperClient.fetchRecords(this.tableName, params)
+
+      if (!response.success) {
+        console.error(response.message)
+        throw new Error(response.message)
+      }
+
+      return response.data || []
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        console.error("Error fetching users:", error.response.data.message)
+      } else {
+        console.error(error)
+      }
+      throw error
     }
-    
-    return this.users.map(user => ({
-      Id: user.Id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      avatar: user.avatar,
-      createdAt: user.createdAt
-    }))
   }
 
   // Get user by ID
-  getById(id) {
-    const numId = parseInt(id)
-    if (isNaN(numId)) {
-      throw new Error('ID utilisateur invalide')
-    }
+  async getById(id) {
+    try {
+      const params = {
+        fields: [
+          { field: { Name: "Name" } },
+          { field: { Name: "email_c" } },
+          { field: { Name: "role_c" } },
+          { field: { Name: "avatar_c" } },
+          { field: { Name: "created_at_c" } }
+        ]
+      }
 
-    const user = this.users.find(u => u.Id === numId)
-    if (!user) {
-      throw new Error('Utilisateur non trouvé')
-    }
+      const response = await this.apperClient.getRecordById(this.tableName, parseInt(id), params)
 
-    return {
-      Id: user.Id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      avatar: user.avatar,
-      createdAt: user.createdAt
+      if (!response.success) {
+        console.error(response.message)
+        throw new Error(response.message)
+      }
+
+      return response.data
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        console.error(`Error fetching user with ID ${id}:`, error.response.data.message)
+      } else {
+        console.error(error)
+      }
+      throw error
+    }
+  }
+
+  // Create user
+  async create(userData) {
+    try {
+      const params = {
+        records: [
+          {
+            Name: userData.Name,
+            email_c: userData.email_c,
+            password_c: userData.password_c,
+            role_c: userData.role_c,
+            avatar_c: userData.avatar_c
+          }
+        ]
+      }
+
+      const response = await this.apperClient.createRecord(this.tableName, params)
+
+      if (!response.success) {
+        console.error(response.message)
+        throw new Error(response.message)
+      }
+
+      if (response.results) {
+        const successfulRecords = response.results.filter(result => result.success)
+        const failedRecords = response.results.filter(result => !result.success)
+
+        if (failedRecords.length > 0) {
+          console.error(`Failed to create users ${failedRecords.length} records:${JSON.stringify(failedRecords)}`)
+          throw new Error('Erreur lors de la création de l\'utilisateur')
+        }
+
+        return successfulRecords[0]?.data
+      }
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        console.error("Error creating user:", error.response.data.message)
+      } else {
+        console.error(error)
+      }
+      throw error
+    }
+  }
+
+  // Update user
+  async update(id, userData) {
+    try {
+      const updateData = {
+        Id: parseInt(id)
+      }
+
+      if (userData.Name !== undefined) updateData.Name = userData.Name
+      if (userData.email_c !== undefined) updateData.email_c = userData.email_c
+      if (userData.role_c !== undefined) updateData.role_c = userData.role_c
+      if (userData.avatar_c !== undefined) updateData.avatar_c = userData.avatar_c
+
+      const params = {
+        records: [updateData]
+      }
+
+      const response = await this.apperClient.updateRecord(this.tableName, params)
+
+      if (!response.success) {
+        console.error(response.message)
+        throw new Error(response.message)
+      }
+
+      if (response.results) {
+        const successfulUpdates = response.results.filter(result => result.success)
+        const failedUpdates = response.results.filter(result => !result.success)
+
+        if (failedUpdates.length > 0) {
+          console.error(`Failed to update users ${failedUpdates.length} records:${JSON.stringify(failedUpdates)}`)
+          throw new Error('Erreur lors de la mise à jour de l\'utilisateur')
+        }
+
+        return successfulUpdates[0]?.data
+      }
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        console.error("Error updating user:", error.response.data.message)
+      } else {
+        console.error(error)
+      }
+      throw error
+    }
+  }
+
+  // Delete user
+  async delete(id) {
+    try {
+      const params = {
+        RecordIds: [parseInt(id)]
+      }
+
+      const response = await this.apperClient.deleteRecord(this.tableName, params)
+
+      if (!response.success) {
+        console.error(response.message)
+        throw new Error(response.message)
+      }
+
+      if (response.results) {
+        const successfulDeletions = response.results.filter(result => result.success)
+        const failedDeletions = response.results.filter(result => !result.success)
+
+        if (failedDeletions.length > 0) {
+          console.error(`Failed to delete users ${failedDeletions.length} records:${JSON.stringify(failedDeletions)}`)
+          throw new Error('Erreur lors de la suppression de l\'utilisateur')
+        }
+
+        return successfulDeletions.length > 0
+      }
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        console.error("Error deleting user:", error.response.data.message)
+      } else {
+        console.error(error)
+      }
+      throw error
     }
   }
 }

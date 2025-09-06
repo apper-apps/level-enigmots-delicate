@@ -127,22 +127,6 @@ const LoginPage = () => {
             </Button>
           </form>
 
-          {/* Demo credentials info */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.8 }}
-            className="mt-6 p-4 bg-info/10 border border-info/20 rounded-xl relative z-10"
-          >
-            <p className="text-info font-crimson text-sm text-center mb-2">
-              <ApperIcon name="Info" size={16} className="inline mr-1" />
-              Comptes de démonstration
-            </p>
-            <div className="text-xs font-crimson text-midnight/70 space-y-1">
-              <p><strong>Admin:</strong> admin@enigmots.com / admin123</p>
-              <p><strong>Joueur:</strong> player@enigmots.com / player123</p>
-            </div>
-          </motion.div>
         </motion.div>
       </motion.div>
     </div>
